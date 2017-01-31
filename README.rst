@@ -22,9 +22,21 @@ or with pipsi_ for using its CLI only::
 .. _ctypes: https://docs.python.org/dev/library/ctypes.html
 .. _pipsi: https://github.com/mitsuhiko/pipsi
 
-Usage
------
+CLI Usage
+---------
 
 ::
 
     $ macdict-lookup apple
+    apple | BrE ˈap(ə)l, AmE ˈæpəl | noun (fruit) ...
+
+API Usage
+---------
+
+.. code-block:: python
+
+   from macdict import pool
+
+   with pool() as p:
+       definition = p.lookup_word(u'apple')
+   print(definition)
