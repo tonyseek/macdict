@@ -36,4 +36,9 @@ setup(
         'Topic :: Education',
         'Topic :: Utilities',
     ],
+    entry_points={
+        'console_scripts': [
+            'macdict-lookup = macdict.cli:main',
+        ],
+    },
 )
