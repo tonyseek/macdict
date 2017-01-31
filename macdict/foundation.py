@@ -13,7 +13,7 @@ objc = find_and_load('objc')
 objc.objc_getClass.restype = ctypes.c_void_p
 objc.sel_registerName.restype = ctypes.c_void_p
 objc.objc_msgSend.restype = ctypes.c_void_p
-objc.objc_msgSend.argtypes = (ctypes.c_void_p, ctypes.c_void_p)
+objc.objc_msgSend.argtypes = [ctypes.c_void_p, ctypes.c_void_p]
 
 Foundation = find_and_load('Foundation')
 CoreFoundation = find_and_load('CoreFoundation')
@@ -29,9 +29,9 @@ CFStringEncodingUTF8 = 0x08000100
 
 CFStringCreateWithBytes = Foundation.CFStringCreateWithBytes
 CFStringCreateWithBytes.restype = CFStringRef
-CFStringCreateWithBytes.argtypes = (
-    ctypes.c_void_p, ctypes.POINTER(ctypes.c_char), CFIndex, CFStringEncoding,
-    Boolean)
+CFStringCreateWithBytes.argtypes = [
+    ctypes.c_void_p, ctypes.POINTER(ctypes.c_char), CFIndex,
+    CFStringEncoding, Boolean]
 
 
 class CFRange(ctypes.Structure):
@@ -43,11 +43,15 @@ DCSCopyTextDefinition.restype = CFStringRef
 DCSCopyTextDefinition.argtypes = (ctypes.c_void_p, CFStringRef, CFRange)
 
 
+def sel_name(name):
+    return objc.sel_registerName(name.encode('ascii'))
+
+
 @contextlib.contextmanager
 def autorelease_pool():
-    pool = objc.objc_msgSend(NSAutoreleasePool, objc.sel_registerName('alloc'))
-    pool = objc.objc_msgSend(pool, objc.sel_registerName('init'))
+    pool = objc.objc_msgSend(NSAutoreleasePool, sel_name('alloc'))
+    pool = objc.objc_msgSend(pool, sel_name('init'))
     try:
         yield pool
     finally:
-        objc.objc_msgSend(pool, objc.sel_registerName('drain'))
+        objc.objc_msgSend(pool, sel_name('drain'))

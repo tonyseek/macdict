@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import ctypes
 
 from macdict.foundation import (
-    objc, CFStringCreateWithBytes, CFStringEncodingUTF8, CFRange,
+    objc, sel_name, CFStringCreateWithBytes, CFStringEncodingUTF8, CFRange,
     DCSCopyTextDefinition)
 
 
@@ -14,5 +14,5 @@ def lookup_word(word):
     definition_nsstring = DCSCopyTextDefinition(
         None, word_cfstring, CFRange(0, len(word_bytes)))
     definition = ctypes.c_char_p(objc.objc_msgSend(
-        definition_nsstring, objc.sel_registerName('UTF8String')))
+        definition_nsstring, sel_name('UTF8String')))
     return definition.value.decode('utf-8')
