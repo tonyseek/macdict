@@ -15,4 +15,5 @@ def lookup_word(word):
         None, word_cfstring, CFRange(0, len(word_bytes)))
     definition = ctypes.c_char_p(objc.objc_msgSend(
         definition_nsstring, sel_name('UTF8String')))
-    return definition.value.decode('utf-8')
+    if definition.value:
+        return definition.value.decode('utf-8')
