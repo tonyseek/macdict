@@ -36,10 +36,9 @@ API Usage
 
 .. code-block:: python
 
-   from macdict import pool
+   from macdict import lookup_word
 
-   with pool() as p:
-       definition = p.lookup_word(u'apple')
+   definition = lookup_word(u'apple')
    print(definition)
 
 
