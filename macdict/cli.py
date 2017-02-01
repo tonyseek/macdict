@@ -3,7 +3,6 @@ from __future__ import absolute_import
 import sys
 import argparse
 
-from macdict.foundation import autorelease_pool
 from macdict.dictionary import lookup_word
 
 
@@ -25,8 +24,7 @@ def report(text):
 
 def main():
     args = parse_args()
-    with autorelease_pool():
-        definition = lookup_word(args.word)
+    definition = lookup_word(args.word)
     if definition is None:
         abort(u'Definition not found for "%s"' % args.word)
     else:

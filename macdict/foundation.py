@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 
-import contextlib
 import ctypes
 import ctypes.util
 
@@ -45,13 +44,3 @@ DCSCopyTextDefinition.argtypes = (ctypes.c_void_p, CFStringRef, CFRange)
 
 def sel_name(name):
     return objc.sel_registerName(name.encode('ascii'))
-
-
-@contextlib.contextmanager
-def autorelease_pool():
-    pool = objc.objc_msgSend(NSAutoreleasePool, sel_name('alloc'))
-    pool = objc.objc_msgSend(pool, sel_name('init'))
-    try:
-        yield pool
-    finally:
-        objc.objc_msgSend(pool, sel_name('drain'))
