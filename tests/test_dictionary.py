@@ -5,7 +5,7 @@ from macdict.dictionary import lookup_word
 
 def test_lookup_word():
     definition = lookup_word(u'apple')
-    assert u'an apple a day keeps the doctor away' in definition
+    assert u'fruit' in definition
 
 
 def test_lookup_nothing():
