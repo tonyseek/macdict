@@ -23,7 +23,7 @@ def test_lookup_word(entry_point, mocker):
     with raises(SystemExit) as error:
         main()
     assert error.value.args[0] == 0
-    assert u'an apple a day' in sys.stdout.write.call_args[0][0]
+    assert u'fruit' in sys.stdout.write.call_args[0][0]
 
 
 def test_lookup_nothing(entry_point, mocker):
