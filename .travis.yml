@@ -11,7 +11,9 @@ before_install:
   - export PATH="$PYENV_ROOT/shims:$PATH"
   - pyenv install -s $PYENV_VERSION
   - pyenv rehash && pyenv which python && which python
-install: pip install -U tox coveralls
+install:
+  - pip install -U pip setuptools
+  - pip install -U tox coveralls
 script: tox
 after_success: coveralls
 branches:
