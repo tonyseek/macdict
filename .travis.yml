@@ -13,7 +13,7 @@ before_install:
   - pyenv rehash && pyenv which python && pyenv which pip && which python && which pip
 install:
   - curl https://bootstrap.pypa.io/get-pip.py | python  # See https://stackoverflow.com/a/49748494/718453
-  - pip install -U pip setuptools
+  - pip install -U pip setuptools wheel
   - pip install -U tox coveralls
 script: tox
 after_success: coveralls
