@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 import argparse
 
-from macdict.dictionary import lookup_word
+from macdict.dictionary import lookup_word, ensure_unicode
 
 
 def parse_args():
@@ -24,7 +24,7 @@ def report(text):
 
 def main():
     args = parse_args()
-    definition = lookup_word(args.word.decode('utf-8'))
+    definition = lookup_word(ensure_unicode(args.word, 'utf-8'))
     if definition is None:
         abort(u'Definition not found for "%s"' % args.word)
     else:

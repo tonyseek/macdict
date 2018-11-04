@@ -17,3 +17,9 @@ def lookup_word(word):
         definition_nsstring, sel_name('UTF8String')))
     if definition.value:
         return definition.value.decode('utf-8')
+
+
+def ensure_unicode(text, encoding):
+    if isinstance(text, bytes):
+        return text.decode(encoding)
+    return text

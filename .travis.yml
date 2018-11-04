@@ -1,9 +1,9 @@
 os: osx
 language: generic
 env:
-  - TOXENV=py27 PYENV_VERSION=2.7.13
-  - TOXENV=py36 PYENV_VERSION=3.6.0
-  - TOXENV=pypy PYENV_VERSION=pypy-5.6.0
+  - TOXENV=py27 PYENV_VERSION=2.7.15
+  - TOXENV=py36 PYENV_VERSION=3.6.6
+  - TOXENV=pypy PYENV_VERSION=pypy-5.7.1
 before_install:
   - brew update
   - brew outdated pyenv || brew upgrade pyenv
