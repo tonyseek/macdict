@@ -10,8 +10,9 @@ before_install:
   - export PYENV_ROOT="$(brew --prefix pyenv)"
   - export PATH="$PYENV_ROOT/shims:$PATH"
   - pyenv install -s $PYENV_VERSION
-  - pyenv rehash && pyenv which python && which python
+  - pyenv rehash && pyenv which python && pyenv which pip && which python && which pip
 install:
+  - curl https://bootstrap.pypa.io/get-pip.py | python  # See https://stackoverflow.com/a/49748494/718453
   - pip install -U pip setuptools
   - pip install -U tox coveralls
 script: tox
