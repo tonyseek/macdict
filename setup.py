@@ -8,7 +8,7 @@ with open('README.rst') as readme:
 
 setup(
     name='macdict',
-    version='0.1.2',
+    version='0.1.3',
     description='CLI and library to look up dictionary in macOS.',
     long_description=long_description,
     keywords=['Dictionary.app'],
