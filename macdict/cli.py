@@ -24,8 +24,9 @@ def report(text):
 
 def main():
     args = parse_args()
-    definition = lookup_word(ensure_unicode(args.word, 'utf-8'))
+    word = ensure_unicode(args.word, 'utf-8')
+    definition = lookup_word(word)
     if definition is None:
-        abort(u'Definition not found for "%s"' % args.word)
+        abort(u'Definition not found for "%s"' % word)
     else:
         report(definition)
